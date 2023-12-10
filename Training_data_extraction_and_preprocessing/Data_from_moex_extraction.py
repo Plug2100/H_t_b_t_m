@@ -8,14 +8,14 @@ from abc import ABC, abstractmethod
 
 class price_info_abs(ABC):
     @abstractmethod
-    def extract_price_info(self):
+    def extract_price_info(self, securities: List[str], start: Optional[str] = None, end: Optional[str] = None, frequency: Optional[int] = None) -> List[List[float]]:
         pass
 
 
 # Realisation example
 class price_info(price_info_abs):
 
-    def extract_price_info(self, securities: List[str], start: Optional[str] = None, end: Optional[str] = None, frequency: Optional[int] = None):
+    def extract_price_info(self, securities: List[str], start: Optional[str] = None, end: Optional[str] = None, frequency: Optional[int] = None) -> List[List[float]]:
         if start is None:
             start = (datetime.today() - timedelta(days=7)).strftime('%Y-%m-%d')
         if end is None:
